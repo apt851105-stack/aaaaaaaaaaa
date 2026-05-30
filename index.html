@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10100e" />
+    <title>PIXA — AI 圖片工作室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="PIXA 首頁">
+          <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+          <span>PIXA</span>
+        </a>
+
+        <nav class="main-nav" aria-label="主要選單">
+          <a class="nav-item active" href="#studio" data-page="studio">
+            <svg viewBox="0 0 24 24"><path d="M12 3 14.2 9.8 21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2L12 3Z"/></svg>
+            <span>創作空間</span>
+          </a>
+          <a class="nav-item" href="#library" data-page="library">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 5"/><circle cx="16" cy="8" r="1.5"/></svg>
+            <span>素材庫</span>
+          </a>
+          <a class="nav-item" href="#history" data-page="history">
+            <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"/><path d="M4 4v4.6h4.6M12 8v4l3 2"/></svg>
+            <span>歷史紀錄</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a class="nav-item" href="#settings">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l.1.1-2.8 2.8-.1-.1a1.8 1.8 0 0 0-2-.4 1.8 1.8 0 0 0-1 1.6v.2h-4V21a1.8 1.8 0 0 0-1-1.6 1.8 1.8 0 0 0-2 .4l-.1.1-2.8-2.8.1-.1a1.8 1.8 0 0 0 .4-2 1.8 1.8 0 0 0-1.6-1H2.8v-4H3a1.8 1.8 0 0 0 1.6-1 1.8 1.8 0 0 0-.4-2l-.1-.1 2.8-2.8.1.1a1.8 1.8 0 0 0 2 .4 1.8 1.8 0 0 0 1-1.6v-.2h4V3a1.8 1.8 0 0 0 1 1.6 1.8 1.8 0 0 0 2-.4l.1-.1 2.8 2.8-.1.1a1.8 1.8 0 0 0-.4 2 1.8 1.8 0 0 0 1.6 1h.2v4H21a1.8 1.8 0 0 0-1.6 1Z"/></svg>
+            <span>設定</span>
+          </a>
+          <div class="profile">
+            <div class="avatar">L</div>
+            <div><strong>Lin Studio</strong><small>Pro 方案</small></div>
+            <button aria-label="更多帳戶選項">⋯</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">CREATIVE STUDIO</p>
+            <h1>AI 圖片工作室</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="credits"><span class="credit-dot">✦</span><strong>1,240</strong><small>點數</small></div>
+            <button class="icon-btn" aria-label="通知">
+              <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 6-3 8h18c0-2-3-1-3-8M14 20h-4"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="studio-layout">
+          <section class="control-panel">
+            <div class="mode-tabs" role="tablist" aria-label="創作模式">
+              <button class="mode-tab active" data-mode="generate" role="tab" aria-selected="true">
+                <svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg>
+                圖片生成
+              </button>
+              <button class="mode-tab" data-mode="edit" role="tab" aria-selected="false">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>
+                圖片編輯
+              </button>
+            </div>
+
+            <div class="panel-content">
+              <div class="edit-upload hidden" id="editUpload">
+                <div class="section-heading"><label>上傳參考圖片</label><small>PNG、JPG，最大 10MB</small></div>
+                <label class="upload-zone" id="uploadZone">
+                  <input type="file" accept="image/png,image/jpeg,image/webp" id="fileInput" />
+                  <svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L8 8m4-4 4 4M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+                  <strong>拖放圖片，或點擊上傳</strong>
+                </label>
+              </div>
+
+              <div class="prompt-head">
+                <label for="promptInput">描述你的想像</label>
+                <button class="magic-btn" id="magicBtn"><span>✦</span> 幫我優化</button>
+              </div>
+              <div class="prompt-box">
+                <textarea id="promptInput" maxlength="500" placeholder="描述你想要生成的畫面、風格、光線與構圖...">午後的陽光灑落在極簡風格的咖啡館，一杯拿鐵放在木桌上，窗邊有綠色植栽，電影感，高品質攝影</textarea>
+                <div class="prompt-footer"><span id="promptCount">49 / 500</span><button id="clearPrompt">清除</button></div>
+              </div>
+
+              <div class="field-group">
+                <div class="section-heading"><label>選擇風格</label><button class="text-btn">查看全部 <span>→</span></button></div>
+                <div class="style-grid" id="styleGrid">
+                  <button class="style-card active" data-style="寫實攝影"><span class="style-preview realistic"></span><small>寫實攝影</small></button>
+                  <button class="style-card" data-style="電影質感"><span class="style-preview cinematic"></span><small>電影質感</small></button>
+                  <button class="style-card" data-style="插畫藝術"><span class="style-preview illustration"></span><small>插畫藝術</small></button>
+                  <button class="style-card" data-style="極簡美學"><span class="style-preview minimal"></span><small>極簡美學</small></button>
+                </div>
+              </div>
+
+              <div class="settings-row">
+                <div class="field-group">
+                  <label>圖片比例</label>
+                  <button class="select-control" id="ratioSelect"><span><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/></svg> 4 : 3</span><b>⌄</b></button>
+                </div>
+                <div class="field-group">
+                  <label>生成張數</label>
+                  <div class="stepper"><button id="minusBtn">−</button><strong id="imageCount">4</strong><button id="plusBtn">＋</button></div>
+                </div>
+              </div>
+
+              <button class="advanced-toggle" id="advancedToggle"><span><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg> 進階設定</span><b>⌄</b></button>
+              <div class="advanced-panel hidden" id="advancedPanel">
+                <label>創意強度 <output id="creativityOutput">72%</output></label>
+                <input id="creativityRange" type="range" min="0" max="100" value="72" />
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <button class="generate-btn" id="generateBtn"><span>✦</span><strong>開始生成</strong><small>消耗 12 點</small></button>
+            </div>
+          </section>
+
+          <section class="gallery-panel">
+            <div class="gallery-head">
+              <div><h2>生成結果</h2><p>將你的想像轉化為精美圖片</p></div>
+              <div class="gallery-actions">
+                <button class="outline-btn" id="downloadAll"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg> 全部下載</button>
+                <button class="icon-btn" id="layoutBtn" aria-label="切換顯示方式"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+              </div>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+              <article class="image-card featured">
+                <div class="art art-one"><span class="window"></span><span class="plant"></span><span class="cup"></span><span class="table-edge"></span></div>
+                <span class="badge">精選</span>
+                <div class="card-actions"><button title="放大預覽">⌕</button><button title="下載">↓</button><button title="更多">⋯</button></div>
+              </article>
+              <article class="image-card">
+                <div class="art art-two"><span class="window"></span><span class="plant"></span><span class="cup"></span><span class="table-edge"></span></div>
+                <div class="card-actions"><button title="放大預覽">⌕</button><button title="下載">↓</button><button title="更多">⋯</button></div>
+              </article>
+              <article class="image-card">
+                <div class="art art-three"><span class="window"></span><span class="plant"></span><span class="cup"></span><span class="table-edge"></span></div>
+                <div class="card-actions"><button title="放大預覽">⌕</button><button title="下載">↓</button><button title="更多">⋯</button></div>
+              </article>
+              <article class="image-card">
+                <div class="art art-four"><span class="window"></span><span class="plant"></span><span class="cup"></span><span class="table-edge"></span></div>
+                <div class="card-actions"><button title="放大預覽">⌕</button><button title="下載">↓</button><button title="更多">⋯</button></div>
+              </article>
+            </div>
+
+            <div class="gallery-bottom">
+              <p><span class="pulse"></span> 已完成 4 張圖片生成</p>
+              <button class="ghost-btn" id="regenerateBtn"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-15-4l-2 2m0-5v5h5M4 13a8 8 0 0 0 15 4l2-2m0 5v-5h-5"/></svg> 重新生成</button>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="generation-overlay hidden" id="generationOverlay"><div class="loader"><span></span><strong>正在創作你的圖片</strong><small>AI 正在將想像化為畫面...</small></div></div>
+    <script src="script.js"></script>
+  </body>
+</html>
